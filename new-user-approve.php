@@ -5,7 +5,7 @@
  Plugin URI: http://nextdevit.com/plugin/new-user-approval
  Description: Allow administrators to approve users once they register. Only approved users will be allowed to access the site.
  Author: NextDevIT
- Version: 1.0
+ Version: 2.5
  Author URI: http://nextdevit.com
  Text Domain: new-user-approve
 */

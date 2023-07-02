@@ -466,7 +466,7 @@ pw_new_user_approve_admin_approve();
 
 function hide_plugin_sidebar_nextdevit(){
     echo "<style type='text/css'>";
-    echo "ul.wp-submenu.wp-submenu-wrap:nth-child(2) {display:none;}";
+    echo "#toplevel_page_new-user-approve-admin ul.wp-submenu.wp-submenu-wrap:nth-child(2) {display:none;}";
     echo "</style>";
 }
 add_action('admin_print_scripts', 'hide_plugin_sidebar_nextdevit');
