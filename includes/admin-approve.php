@@ -173,7 +173,7 @@ class pw_new_user_approve_admin_approve
                         if (isset($_SERVER['REQUEST_URI'])) {  $SERVER_URI = sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])); }
                         $edit_link = add_query_arg('wp_http_referer', urlencode(esc_url($SERVER_URI)), "user-edit.php?user_id=$user->ID");
                     }
-                    $edit = ($avatar == true) ? ('<strong style="position: relative; top: -17px; left: 6px;"><a class="users_edit_links" href="' . esc_url($edit_link) . '">' . esc_html($user->user_login) . '</a></strong>') : ('<strong style="top: -17px; left: 6px;"><a href="' . esc_url($edit_link) . '">' . esc_html($user->user_login) . '</a></strong>');
+                    $edit = ($avatar == true) ? ('<strong style="position: relative; top: -0px; left: 6px;"><a class="users_edit_links" href="' . esc_url($edit_link) . '">' . esc_html($user->user_login) . '</a></strong>') : ('<strong style="top: -17px; left: 6px;"><a href="' . esc_url($edit_link) . '">' . esc_html($user->user_login) . '</a></strong>');
 
                 } else {
                     $edit = ($avatar == true) ? ('<strong style="position: relative; top: -17px; left: 6px;">' . esc_html($user->user_login) . '</strong>') : ('<strong style="top: -17px; left: 6px;">' . esc_html($user->user_login) . '</strong>');
@@ -289,8 +289,8 @@ $row++;
     public function _add_meta_boxes()
     {
         add_meta_box('nua-approve-admin', __('Approve Users', 'new-user-approve'), array($this, 'metabox_main'), 'users_page_new-user-approve-admin', 'main', 'high');
-        add_meta_box('nua-support', __('Support', 'new-user-approve'), array($this, 'metabox_support'), 'users_page_new-user-approve-admin', 'side', 'default');
-        add_meta_box('nua-feedback', __('Feedback', 'new-user-approve'), array($this, 'metabox_feedback'), 'users_page_new-user-approve-admin', 'side', 'default');
+        // add_meta_box('nua-support', __('Support', 'new-user-approve'), array($this, 'metabox_support'), 'users_page_new-user-approve-admin', 'side', 'default');
+        // add_meta_box('nua-feedback', __('Feedback', 'new-user-approve'), array($this, 'metabox_feedback'), 'users_page_new-user-approve-admin', 'side', 'default');
     }
 
     public function metabox_main()
@@ -312,10 +312,6 @@ $row++;
 			   class="nav-tab<?php echo $active_tab == 'approved_users' ? ' nav-tab-active' : ''; ?>"><span><?php esc_html_e('Approved Users', 'new-user-approve');?></span></a>
 			<a href="<?php echo esc_url(admin_url('admin.php?page=new-user-approve-admin&tab=denied_users')); ?>"
 			   class="nav-tab<?php echo $active_tab == 'denied_users' ? ' nav-tab-active' : ''; ?>"><span><?php esc_html_e('Denied Users', 'new-user-approve');?></span></a>
-			<a href="<?php echo esc_url(admin_url('admin.php?page=new-user-approve-admin&tab=zapier')); ?>"
-			   class="nav-tab<?php echo $active_tab == 'zapier' ? ' nav-tab-active' : ''; ?>"><span><?php esc_html_e('Zapier', 'new-user-approve');?></span></a>
-			<a href="<?php echo esc_url(admin_url('admin.php?page=new-user-approve-admin&tab=pro_features')); ?>"
- 			   class="nav-tab<?php echo $active_tab == 'pro_features' ? ' nav-tab-active' : ''; ?>"><span><?php esc_html_e('Pro Features', 'new-user-approve');?></span></a>
  		</h3>
 
 <?php if ($active_tab == 'pending_users'): ?>
@@ -465,3 +461,12 @@ function pw_new_user_approve_admin_approve()
 }
 
 pw_new_user_approve_admin_approve();
+
+
+
+function hide_plugin_sidebar_nextdevit(){
+    echo "<style type='text/css'>";
+    echo "ul.wp-submenu.wp-submenu-wrap:nth-child(2) {display:none;}";
+    echo "</style>";
+}
+add_action('admin_print_scripts', 'hide_plugin_sidebar_nextdevit');
